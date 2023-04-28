@@ -1,12 +1,12 @@
 namespace app.Cards
 {
-    enum Suits{
+    public enum Suits{
         Heart=0,
         Diamond=1,
         Club=2,
         Spades=3
     }
-    class Card{
+    public class Card{
         private readonly int _v;
         public Card(Suits s, int number)
         {
@@ -17,7 +17,7 @@ namespace app.Cards
             return (Suits)(_v>>4);
         } }
         public int Value { get{
-            return ((_v<<28)>>28);
+            return _v&15;
         } }
     }
 }

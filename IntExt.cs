@@ -1,7 +1,7 @@
-namespace app{
-public static class IntExt{
-    
+using app.Cards;
 
+namespace app{
+    public static class IntExt{
         //this function will return a base 2 representation of an integer
         //for example, the number 2 will return 0000010
         //0-00-1101
@@ -97,5 +97,12 @@ public static class IntExt{
             return finaledSequence;
         }
 
-}
+        public static void List(this List<Card> hand)
+        {
+            foreach(Card c in hand)
+            {
+                Console.WriteLine($"{c.Value} of {c.Suit}");
+            }
+        }
+    }
 }
