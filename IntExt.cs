@@ -104,5 +104,31 @@ namespace app{
                 Console.WriteLine($"{c.Value} of {c.Suit}");
             }
         }
+
+        public static void CheckSum(this List<Card> hand, string owner)
+        {
+            if(hand.Sum() > 21)
+            {
+                Game.InRound = false;
+                Game.isOver = true;
+                Console.WriteLine($"The {owner} Lost! They went over 21.\nType 'next' to start the next round");
+            }
+            else if(hand.Sum() == 21)
+            {
+                Game.InRound = false;
+                Game.isOver = true;
+                Console.WriteLine($"Blackjack!The {owner} hit 21!\nType 'next' to start the next round");
+            }
+        }
+
+        public static int Sum(this List<Card> hand)
+        {
+            int sum = 0;
+            foreach(Card c in hand)
+            {
+                sum += c.Value;
+            }
+            return sum;
+        }
     }
 }

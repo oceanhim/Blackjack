@@ -20,12 +20,19 @@ namespace app
             _cards = (from c in _cards select new Pair<Card>(rnd.Next(),c)).OrderBy(o => o.prop1).Select(o => o.prop2).ToArray();
         }
 
-        public Card[] Draw(int amount)
+        public Card Draw()
         {
             Card[] nonnull = _cards.SkipWhile(c => c == null).ToArray();
-            _cards[0] = null!;
-            _cards[1] = null!;
-            return nonnull.Take(amount).ToArray();
+            Card drawn = nonnull.First();
+            for(int i = 0; i < _cards.Count(); i++)
+            {
+                if(_cards[i] != null)
+                {
+                    _cards[i] = null!;
+                    i = _cards.Count();
+                }                
+            }
+            return drawn;
         }
 
         public Deck()
